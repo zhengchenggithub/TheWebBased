@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script>
+
+        //定义模块
+        var ang = angular.module('module-1',[]);
+
+        //定义控制器
+        ang.controller('myCon', function ($scope) {
+
+            //$scope表示作用域对象，每个控制器都有自己的作用域对象
+            $scope.arrs = [
+                {"name":"笔记本","price":"8000"},
+                {"name":"平板","price":"7000"},
+                {"name":"手机","price":"13000"},
+                {"name":"手表","price":"20000"},
+            ];
+
+            //定义一个空对象 , 用于更新和保存数据时临时存储
+            $scope.prod = {};
+
+            //定义一个单击删除按钮时触发的事件，用于删除选中行
+            $scope.delete = function ($index) {
+
+                if($index>=0){
+                    if(confirm("是否删除"+$scope.arrs[$index].name+"商品") ){
+                        $scope.arrs.splice($index,1);
+                    }
+                }
+            };
+
+            //定义一个全局变量idx  , 用于存储选中行的索引，方便执行保存操作时保存数据
+            var idx = -1;
+
+            //定义一个单击修改按钮时触发的事件，用于单击后弹出模块窗口用于修改数据
+            $scope.updata = function ($index) {
+
+                //显示bootstrap中的模块窗口
+                $('#modal-1').modal('show');
+
+                //将选中行的数据绑定到临时对象prod中，在下面的模态窗口中展示出来
+                $scope.prod.name = $scope.arrs[$index].name;
+                $scope.prod.price = $scope.arrs[$index].price;
+                //选中行的索引赋值给全局变量idx
+                idx = $index;
+            };
+
+            //定义一个单机保存按钮时触发的事件,
+            $scope.save = function () {
+                //将修改后的值赋给数组
+                $scope.arrs[idx].name = $scope.prod.name;
+                $scope.arrs[idx].price = $scope.prod.price;
+                //关闭模块窗口
+                $('#modal-1').modal('hide');
+            }
+
+        })
+
+    </script>
+
+</head>
+<body ng-app="module-1">
+
+<div ng-controller="myCon">
+
+    <div class="container">
+                <table class="table">
+                    <tr ng-repeat=" ar in arrs">
+                        <td>{{$index+1}}</td>
+                        <td ng-repeat="a in ar"> {{a}} </td>
+                        <td><a href="javascript:void(0)" class="btn btn-primary" ng-click="updata($index)">修改</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a ng-click="delete($index)" href="javascript:void(0)" class="btn btn-danger">删除</a></td>
+                    </tr>
+                </table>
+
+
+
+        <div class="modal" id="modal-1">
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h3 class="modal-title">修改商品</h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <div>商品编号</div>
+                        <input ng-model="prod.name" value="{{prod.name}}">
+                        <div>商品名称</div>
+                        <input ng-model="prod.price" value="{{prod.price}}">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button class="btn btn-success" ng-click="save()">确定</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<p></p>
+<script src="http://code.jquery.com/jquery.js"></script>
+
+<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

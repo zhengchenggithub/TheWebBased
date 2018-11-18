@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DIV+CSS进行完整页面布局</title>
+</head>
+<style>
+    body{
+        background-color:#C7B6B8
+    }
+    #a{
+        width: 100%;
+        height:100px;
+        /*border-color: red;*/
+        /*border-style: solid;*/
+    }
+    #b{
+        width: 500px;
+        height: 90px;
+            /*border-color: yellow;*/
+        /*border-style: solid;*/
+        margin-top: 2.5px;
+        margin-left: 2.5px;
+        float: left;
+        color: white;
+    }
+    #c{
+        width: 500px;
+        height: 90px;
+        /*border-color: yellow;*/
+        /*border-style: solid;*/
+        margin-top: 2.5px;
+        margin-right: 2.5px;
+        float: right;
+    }
+    #d{
+        margin-top:60px;
+        margin-left: 60px;
+    }
+    #e{
+        border-style: solid;
+        border-color: white;
+        width: 70%;
+        height: 530px;
+        float: left;
+        background-color:white;
+        border-radius:20px;
+
+    }
+    #f{
+        border-style: solid;
+        border-color: white;
+        width: 29%;
+        height: 530px;
+        float: right;
+        background-color:white;
+        border-radius:20px;
+    }
+    #g{
+        margin-top: 40px;
+        margin-left: 50px;
+        float: left;
+    }
+    #h{
+        color: crimson;
+        margin-left: 200px;
+        margin-top: 50px;
+    }
+    #i{
+        margin-top: 10px;
+        margin-left: 150px;
+        float: left;
+    }
+    #j{
+        /*border: 1px solid darkmagenta;*/
+        /*border-radius: 20px;*/
+        width: 100%;
+        height: 70px;
+        margin-top: 5px
+    }
+    a{
+        float: right;
+        color: white;
+        margin-top:20px;
+        margin-right:10px;
+    }
+</style>
+<div>
+    <div id="a">
+        <div id="b">
+            <p style="text-indent:1em">博客首页</p>
+            <p style="text-indent:1em">本页面主要以DIV+CSS实现的</p>
+        </div>
+        <div id="c">
+            <input type="button" value="首页" id="d" />
+            <input type="button" value="闲言碎语" id="d" />
+            <input type="button" value="我是谁" id="d" />
+
+        </div>
+
+    </div>
+    <hr style="border:1px dashed #000;">
+    <div id="e">
+        <div id="g">
+            <img src="../图片/timg.jpg">
+        </div>
+        <div id="h">
+            <p>我是HTMl</p>
+            <i style="color: dimgray">博思智慧学习平台</i>
+            <p>HTMl是超文体标记语言，是前端开发的基础。</p>
+
+        </div>
+        <hr style="border:1px dashed #000;">
+        <div id="g">
+            <img src="../图片/u=3679693874,3655584695&fm=26&gp=0.jpg">
+        </div>
+        <div id="h">
+            <p>我是CSS</p>
+            <i style="color: dimgray">博思智慧学习平台</i>
+            <p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（
+                标准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文件样式的计算机语言。</p>
+
+        </div>
+        <hr style="border:1px dashed #000;">
+        <div id="g">
+            <img src="../图片/u=1569746487,5778137&fm=26&gp=0.jpg">
+        </div>
+        <div id="h">
+            <p>我是JS</p>
+            <i style="color: dimgray">博思智慧学习平台</i>
+            <p>JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。</p>
+
+        </div>
+
+    </div>
+
+    <div id="f">
+        <div id="i">
+            <img src="../图片/111.jpg">
+        </div>
+        <div style="border-radius:20px;width: auto;height: 100px;border: 0.5px solid silver;margin-top:120px;background-color: darkgray" >
+            <p style="color: black;margin-top: 5px;margin-left: 163px">我的博客</p>
+            <p style="color: black"><b>简简单单的代码工，好好学习天天向上</b></p>
+        </div>
+        <b><i style="color: dimgray">推荐书籍</i></b>
+        <hr style="border:1px dashed #000;">
+        <p style="text-indent: 1em"><i>《CSS那些事》</i></p>
+        <p style="text-indent: 1em"><i>《HTML那些事》</i></p>
+        <p style="text-indent: 1em"><i>《JS那些事》</i></p>
+        <p style="text-indent: 1em"><i>《JQ那些事》</i></p>
+        <hr style="border:1px solid black">
+        <h4 style="text-align: center">访客量88888</h4>
+        <h4 style="text-align: center">文章888888</h4>
+    </div>
+</div>
+<hr style="border:1px dashed #000;margin-top:550px">
+<div id="j" >
+    <div>
+        <p style="color: white;float: left">2017-2018 CopyRight my blog</p>
+        <a>关于我们</a>
+        <a>联系我们</a>
+        <a>使用条款</a>
+        <a>意见反馈</a>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

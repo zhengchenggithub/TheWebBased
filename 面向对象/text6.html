@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js运动之右侧悬浮框2.0</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 200px;
+            background: black;
+            position: absolute;
+            top: 50px;
+            right: 0px;
+            bottom: 0px;
+        }
+        body{
+            height: 2000px;
+        }
+    </style>
+    <script>
+        window.onscroll = function () {      //onscroll 事件在元素滚动条在滚动时触发
+            var oDiv = document.getElementById('div1');
+            var scrollTop = document.documentElement.scrollTop ||document.body.scrollTop;
+            //scrollTop() 方法返回或设置匹配元素的滚动条的垂直位置。
+           // oDiv.style.top = (document.documentElement.clientHeight - oDiv.offsetHeight)/2 + scrollTop + 'px';
+            startMove(parseInt((document.documentElement.clientHeight - oDiv.offsetHeight)/2 + scrollTop));
+        };
+            var timer = null;
+
+        function startMove(iTarget) {
+            var oDiv = document.getElementById('div1');
+            clearInterval(timer);
+            timer = setInterval(function () {
+                var speed = (iTarget  - oDiv.offsetTop)/6;
+                speed = speed>0?Math.ceil(speed):Math.floor(speed);
+                if (oDiv.offsetTop==iTarget)
+                {
+                    clearInterval(timer);
+                }
+                else
+                {
+                    oDiv.style.top = oDiv.offsetTop+speed+"px";
+                }
+            },30)
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

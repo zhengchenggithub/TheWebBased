@@ -1,0 +1,55 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://apps.bdimg.com/libs/angular.js/1.2.16/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="myAppCtrl">
+    <label>username</label>
+    <input type="text" ng-model="username" placeholder="输入"/>
+    <pre ng-show="username">
+                {{users}}
+            </pre>
+</div>
+<script type="text/javascript">
+    var myAppModule = angular.module("myApp",[]);
+    myAppModule.factory('myService',['$http',function($http){
+        var doRequest = function(){
+            return $http({
+                method:'GET',
+                url:'data.json'
+            });
+        }
+        return {
+            userList:function(){
+                return doRequest();
+            }
+        }
+    }]);
+    myAppModule.controller('myAppCtrl',['$scope','$timeout','myService',
+        function($scope,$timeout,myService){
+            var timeout;
+            $scope.$watch('username',function(newUserName){
+                console.log("您输入了："+newUserName);
+                if(newUserName){
+                    if(timeout){
+                        $timeout.cancel(timeout);
+                    }
+                    timeout = $timeout(function(){
+                        myService.userList().success(function(data){
+                            console.log(data);
+                            $scope.users = data;
+                        });
+                    },350);
+                }
+            });
+        }
+    ]);
+</script>
+</body>
+</html>
+
+
+

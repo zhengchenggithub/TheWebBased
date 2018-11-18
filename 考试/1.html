@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第一题</title>
+</head>
+<body>
+<div id="show"></div>
+<script>
+
+
+    function run(){
+        var time = new Date();//获取系统当前时间
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var date= time.getDate();//系统时间月份中的日
+        var hour = time.getHours();
+        var a;
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+        if (hour > 12){
+            a="下午";
+        } else {
+            a="上午";
+        }
+        console.log(seconds);
+        if(month<10){
+            month = "0"+month;
+        }
+        if(date<10){
+            date = "0"+date;
+        }
+        if(hour<10){
+            hour = "0"+hour;
+        }
+        if(minutes<10){
+            minutes = "0"+minutes;
+        }
+        if(seconds<10){
+            seconds = "0"+seconds;
+        }
+        document.getElementById("show").innerHTML = year+"/"+month+"/"+date+"/"+a+hour+":"+minutes+":"+seconds;
+        setTimeout('run()',1000);
+    }
+
+    run();
+
+
+
+</script>
+</body>
+</html>

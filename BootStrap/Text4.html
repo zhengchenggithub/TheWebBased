@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日常</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+    <h1>胶囊导航栏</h1>
+<ul class="nav nav-pills">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">SVN</a></li>
+    <li><a href="#">iOS</a></li>
+    <li><a href="#">VB.Net</a></li>
+    <li><a href="#">Java</a></li>
+    <li><a href="#">PHP</a></li>
+</ul>
+</div>
+<div>
+    <h1>垂直导航栏</h1>
+    <ul class="nav nav-list">
+        <li class="nav-header">List header</li>
+        <li class="active"><a href="#">首页</a></li>
+        <li><a href="#">java</a></li>
+        <li><a href="#">php</a></li>
+        <li><a href="#">bootstrap</a></li>
+    </ul>
+</div>
+
+    <ul class="nav nav-tabs nav-stacked">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">SVN</a></li>
+        <li><a href="#">IOS</a></li>
+        <li><a href="#">VB.Net</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdwon" href="#">
+                Java<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Swing</a></li>
+                <li><a href="#">JMeter</a></li>
+                <li><a href="#">EJB</a></li>
+                <li class="active"></li>
+                <li><a href="#">分离的链接</a></li>
+            </ul>
+        </li>
+        <li><a href="#">PHP</a></li>
+    </ul>
+</ul>
+<h1>可切换式导航栏</h1>
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">php</a></li>
+        <li><a href="#tab2" data-toggle="tab">bootstrap</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <p>like php</p>
+        </div>
+        <div class="tab-pane" id="tab2">
+            <p> like boostrap</p>
+        </div>
+    </div>
+</div>
+
+<div>
+    <h1>面包屑是导航栏</h1>
+<ul class="breadcrumb">
+    <li><a href="#">首页</a> <span class="divider">/</span></li>
+    <li><a href="#">Library</a> <span class="divider">/</span></li>
+    <li class="active">Data</li>
+</ul>
+    </div>
+<h1>下拉式导航栏</h1>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">SVN</a></li>
+    <li><a href="#">iOS</a></li>
+    <li><a href="#">VB.Net</a></li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Java <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Swing</a></li>
+            <li><a href="#">jMeter</a></li>
+            <li><a href="#">EJB</a></li>
+            <li class="divider"></li>
+            <li><a href="#">分离的链接</a></li>
+        </ul>
+    </li>
+    <li><a href="#">PHP</a></li>
+</ul>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+ <head>
+      <meta charset="utf-8" />
+      <title></title>
+      <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+      <script>
+    var app = angular.module("myapp", []);
+    app.controller("myctrl", function($scope) {
+        $scope.stu = [{
+            choose:false,
+            id: 2001,
+            tname: "iphonex",
+            name: "张三",
+            ipone: 13525565588,
+            price: 8699,
+            city: "北京",
+            time: new Date(125568568),
+            state: "已发货"
+        },
+            {
+                choose:false,
+                id: 3006,
+                tname: "iphone6",
+                name: "王红",
+                ipone: 18524565588,
+                price: 5635,
+                city: "郑州",
+                time: new Date(6554425),
+                state: "已发货"
+            },
+            {
+                choose:false,
+                id: 5312,
+                tname: "iphone7",
+                name: "赵小龙",
+                ipone: 17545585598,
+                price: 6180,
+                city: "北京",
+                time: new Date(97815654655),
+                state: "未发货"
+            },
+            {
+                choose:false,
+                id: 2132,
+                tname: "iphone8",
+                name: "赵强",
+                ipone: 176625565618,
+                price: 7190,
+                city: "上海",
+                time: new Date(97815654655),
+                state: "未发货"
+            }
+        ]
+        $scope.test=function(){
+            $scope.add=[];
+            if($scope.newtname==""||$scope.newtname==null){
+                $scope.add.push("商品名不能为空");
+            }
+            if($scope.newname==""||$scope.newname==null){
+                $scope.add.push("用户名不能为空");
+            }
+            if($scope.newipone==""||$scope.newipone==null){
+                $scope.add.push("手机号不能为空");
+            }else if(isNaN($scope.newipone)){
+                $scope.add.push("手机号不是整数");
+            }
+            if($scope.newprices==""||$scope.newprices==null){
+                $scope.add.push("价格不能为空");
+            }else if(isNaN($scope.newprices)){
+                $scope.add.push("价格不是整数");
+
+            }
+            if($scope.citys==null||$scope.city==""){
+                $scope.add.push("城市必须是整数");
+            }
+            if($scope.add.length>0){
+                $scope.divshow=true;
+            }else{
+                $scope.divshow=false;
+                $scope.stu.push({
+                    choose:false,
+                    id: 2,
+                    tname: $scope.newtname,
+                    name: $scope.newname,
+                    ipone: $scope.newipone,
+                    price: $scope.newprices,
+                    city: $scope.citys,
+                    time: new Date(),
+                    state: "未发货"}); }}
+        $scope.check=function(){
+            for (var i=0;$scope.stu.length>i;i++) {
+                $scope.stu[i].choose=$scope.sure;
+            }
+            $scope.delects=function(){
+                var count=0;
+                for (var i=0; $scope.stu.length>i;i++) {
+                    if($scope.stu[i].choose){
+                        $scope.stu.splice(i,1);
+                        count++;
+                        i--
+                    }
+                }
+                if(count==0){
+                    alert("你还没有选中");
+                }
+            }
+
+
+
+
+
+        }
+    });
+</script>
+     </head>
+ <center><body ng-app="myapp" ng-controller="myctrl">
+  <button style="background: dodgerblue;" ng-click="delects()">批量删除</button>
+  <button style="background: dodgerblue;" ng-click="delects()">新增订单</button>
+  <input type="text" placeholder="按商品名称查询...."  ng-model="px"/>
+  <input type="text" placeholder="按手机号查询...."  ng-model="hh"/>
+   <select ng-model="yy">
+        <option>按状态查询....</option>
+        <option>已发货</option>
+        <option>未发货</option>
+       </select>
+  <table style="width: 850px;height: 150px;" border="3px">
+       <tr>
+        <td><input type="checkbox"  ng-click="check()" ng-model="sure"/></td>
+        <td>ID<button ng-click="">排序</button></td>
+        <td>商品名</td>
+        <td>用户名</td>
+        <td>手机号</td>
+        <td>价格</td>
+        <td>城市</td>
+        <td>下单时间</td>
+        <td>状态</td>
+        <td>操作</td>
+       </tr>
+       <tr ng-repeat="a in stu |filter:{tname:px}|filter:{ipone:hh}|filter:{state:yy}">
+        <td><input type="checkbox" ng-model="a.choose"/></td>
+        <td>{{a.id}}</td>
+        <td>{{a.tname}}</td>
+        <td>{{a.name}}</td>
+        <td>
+         <span>{{a.ipone}}</span>
+         <span ng-show="flag" >
+     <input type="text" ng-model="a.ipone" />
+     <button ng-click="flag=false">保存</button>
+     </span>
+         
+        </td>
+        <td>{{a.price|currency:'￥'}}</td>
+        <td>{{a.city}}</td>
+        <td>{{a.time|date:'yyyy-MM-dd hh:mm:ss'}}</td>
+        <td>  
+       <span ng-if="a.state=='未发货'">
+    <a href="" ng-click="a.state='已发货'">{{a.state}} </a>   
+   </span>
+       <span ng-if="a.state=='已发货'">已发货</span>
+         </td>
+                    <td><button ng-click="flag=true">修改</button></td>
+       </tr>
+      </table>
+<button style="background-color: aliceblue;" ng-click="show=true">新增订单</button>
+ <div style="width: 850px;height: 350px; " ng-show="show">
+     <span>添加订单信息</span>
+     <div style="width: 500px;height: 350px; float: left;" >
+     商品名：<input type="text" ng-model="newtname"/><br />
+     用户名：<input type="text" ng-model="newname"/><br />
+         手机号           ：<input  type="text" ng-model="newipone"/><br />
+     价格为：<input type="text" ng-model="newprices"/><br />
+     城市：<select ng-model="citys" ><br />
+      <option>澳门</option>
+      <option>广东</option>
+      <option>哈尔滨</option>
+     </select>
+     <button ng-click="test()">保存</button><br />
+     </div>
+     <div style="width: 100%;height: 350px; background: yellow; float: left;" ng-show="divshow">
+     <ul>
+      <li ng-repeat="v in add">{{v}}</li>
+      
+     </ul> 
+     </div>
+     </div>
+ </body></center>
+</html>

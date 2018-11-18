@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义滚动条</title>
+    <style>
+        #parent{
+            width: 20px;
+            height: 600px;
+            background: yellow;
+            position: relative;
+            float: right;
+        }
+        #div1{
+            width: 20px;
+            height: 30px;
+            border-radius: 15px;
+            background: red;
+            position:absolute;
+        }
+        #div2{
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            float: left;
+            border: 1px solid black;
+        }
+        #div3{
+            position: absolute;
+            left: 0px;
+
+
+        }
+    </style>
+    <script>
+        window.onload =function () {
+
+            var  oDiv1 =document.getElementById('div1');
+            var  oDiv2 =document.getElementById('div2');
+            var  oDiv3 =document.getElementById('div3');
+            var  oParent =document.getElementById('parent');
+
+
+            var disy = 0;
+            oDiv1.onmousedown =function (ev) {
+                var oEvent = ev||event;
+
+
+                disy = oEvent.clientY - oDiv1.offsetTop;
+
+                document.onmousemove =function (ev) {
+                    var oEvent = ev||event;
+
+                    var t = oEvent.clientY - disy;
+
+
+                    if (t<0)
+                    {
+                        t = 0;
+                    }
+                    else  if (t > oParent.offsetHeight - oDiv1.offsetHeight)
+                    {
+                        t = oParent.offsetHeight - oDiv1.offsetHeight;
+                    };
+                    oDiv1.style.top = t+'px';
+                    var scale = t/(oParent.offsetHeight - oDiv1.offsetHeight);
+                    oDiv3.style.top = -scale*(oDiv3.offsetHeight-oDiv2.offsetHeight) + "px";
+
+                    document.title =scale;
+                };
+                document.onmouseup =function () {
+
+                    document.onmousemove = 'null';
+                    document.onmouseup='null';
+                };
+                return false;
+            };
+
+
+        };
+    </script>
+</head>
+<body>
+<div id="parent">
+    <div id="div1"></div>
+</div>
+<div id="div2">
+    <div id="div3">
+        （1）主轴（侧轴），flexbox布局里面将一个可伸缩容器按照水平和垂直方向分为主轴或侧轴，
+        如果你想让这个容器中的可伸缩项目在水平方向上可伸缩展开，那么水平方向上就是主轴，垂直方向上是侧轴，反之亦然；
+
+        （2）主轴（侧轴）长度，当确定了哪个是主轴哪个是侧轴之后，在主轴方向上可伸缩容器的尺寸（宽或高）
+        就被称作主轴长度，侧轴方向上的容器尺寸（宽或高）就被称作侧轴长度；
+
+        （3）主轴（侧轴）起点，主轴（侧轴）终点，例如主轴方向是水平方向，通常在水平方向上网页布局是从左向右的，
+        那么可伸缩容器的左border就是主轴起点，右border就是主轴终点，侧轴是在垂直方向，通常是从上到下的，
+        所以上border就是侧轴起点，下border就是侧轴终点；
+
+        （4）伸缩容器：如果要构建一个可伸缩的盒子，这些可伸缩的项目必须要由一个display：
+        flex的属性的盒子包裹起来，这个盒子就叫做伸缩容器；
+
+        （5）伸缩项目：包含在伸缩容器中需要进行伸缩布局的元素被称作伸缩项目；
+        （1）主轴（侧轴），flexbox布局里面将一个可伸缩容器按照水平和垂直方向分为主轴或侧轴，
+        如果你想让这个容器中的可伸缩项目在水平方向上可伸缩展开，那么水平方向上就是主轴，垂直方向上是侧轴，反之亦然；
+
+        （2）主轴（侧轴）长度，当确定了哪个是主轴哪个是侧轴之后，在主轴方向上可伸缩容器的尺寸（宽或高）
+        就被称作主轴长度，侧轴方向上的容器尺寸（宽或高）就被称作侧轴长度；
+
+        （3）主轴（侧轴）起点，主轴（侧轴）终点，例如主轴方向是水平方向，通常在水平方向上网页布局是从左向右的，
+        那么可伸缩容器的左border就是主轴起点，右border就是主轴终点，侧轴是在垂直方向，通常是从上到下的，
+        所以上border就是侧轴起点，下border就是侧轴终点；
+
+        （4）伸缩容器：如果要构建一个可伸缩的盒子，这些可伸缩的项目必须要由一个display：
+        flex的属性的盒子包裹起来，这个盒子就叫做伸缩容器；
+        （3）主轴（侧轴）起点，主轴（侧轴）终点，例如主轴方向是水平方向，通常在水平方向上网页布局是从左向右的，
+        那么可伸缩容器的左border就是主轴起点，右border就是主轴终点，侧轴是在垂直方向，通常是从上到下的，
+        所以上border就是侧轴起点，下border就是侧轴终点；
+
+        （4）伸缩容器：如果要构建一个可伸缩的盒子，这些可伸缩的项目必须要由一个display：
+        flex的属性的盒子包裹起来，这个盒子就叫做伸缩容器；（3）主轴（侧轴）起点，主轴（侧轴）终点，例如主轴方向是水平方向，通常在水平方向上网页布局是从左向右的，
+        那么可伸缩容器的左border就是主轴起点，右border就是主轴终点，侧轴是在垂直方向，通常是从上到下的，
+        所以上border就是侧轴起点，下border就是侧轴终点；
+
+        （4）伸缩容器：如果要构建一个可伸缩的盒子，这些可伸缩的项目必须要由一个display：
+        flex的属性的盒子包裹起来，这个盒子就叫做伸缩容器；
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style>
+        .container-fluid{
+            width: 600px;
+            height: 500px;
+            background: pink;
+        }
+
+    </style>
+
+</head>
+<body ng-app="myApp" ng-controller="validateCtrl" ng-cloak>
+<div class="container-fluid">
+    <h1 class="h1">Please Sign Up <small>it`s free and always will be.</small></h1>
+    <form  class="form-horizontal" name="myFrom" novalidate>
+        <div class="form-group">
+            <div class="col-md-6">
+                <input class="form-control input-lg"  name="firstName" type="text" placeholder="First Name" ng-model="firstName" required>
+                <p ng-show="myFrom.firstName.$invalid && myFrom.firstName.$dirty" class="error-hint">*真实姓名要求必填.</p>
+            </div>
+            <div class="col-md-6">
+                <input class="form-control input-lg" type="text" placeholder="Last Name" ng-model="lastName" name="lastName" required>
+                <span style="color:red" ng-show="myFrom.lastName.$dirty && myFrom.lastName.$invalid" class="error-hint">
+                    lastName是必须填写
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                <input class="form-control input-lg" type="password" placeholder="密码" name="password" ng-model="password" required>
+                <span style="color: red" class="error-hint" ng-show="myFrom.password.$dirty && myFrom.password.$invalid">密码必须填写</span>
+            </div>
+                <div class="col-sm-6">
+                    <input name="repassword" type="password"   ng-required="true"  ng-model="repassword"  class="form-control input-lg" placeholder="确认密码(等于密码)">
+                        <span ng-show="myForm.password.$invalid">
+                            <span style="color: red" ng-show="password != repassword" class="error-hint">密码和确认密码不一致</span>
+                        </span>
+                </div>
+
+        </div>
+    </form>
+        <form name="myFrom">
+        <div class="form-group">
+            <input type="email" class="form-control input-lg" ng-model="email"  name="email" placeholder="邮箱">
+            <span style="color: red" ng-show="myFrom.email.$dirty && myFrom.email.$invalid">
+                <span ng-show="myFrom.email.$error.required">必须填写</span>
+                <span ng-show="myFrom.email.$error.email">非法邮箱地址</span>
+            </span>
+        </div>
+
+                <div class="form-group">
+                <select ng-model="selectedSite" class="form-control input-lg" >
+                    <option ng-repeat=" n in names" value="{{n.url}}">{{n}}</option>
+                </select>
+                    </div>
+        </form>
+
+
+
+                <div role="button" class="btn btn-primary btn-lg col-sm-5" type="submit">注册</div>
+
+                <div role="button" class="btn btn-success btn-lg col-sm-5 col-sm-offset-2">登录</div>
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function($scope) {
+        $scope.names = ["中国", "俄罗斯", "美国", "法国", "英国"];
+        $scope.selectedSite=$scope.names[0].url;
+    });
+</script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="../javascript/bootstrap.js" ></script>
+</body>
+</html>

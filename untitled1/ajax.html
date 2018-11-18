@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过Ajax往数据库出入数据</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<button onclick="doPost()">插入到数据库中</button>
+</body>
+</html>
+<script>
+    var a = 6;
+    function doPost() {
+        $.ajax({
+            url: "ajax.php",
+            type:"post",
+            data:{
+                quantity:a
+            },
+            success: function (data) {
+
+            },
+            error: function (error) {
+                console.log(error);
+
+            }
+        })
+        
+    }
+</script>

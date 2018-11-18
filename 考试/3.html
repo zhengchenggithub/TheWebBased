@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三题</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style>
+        .navbar{
+            background-color:gainsboro;
+        }
+        .blank{ clear:both; overflow:hidden; display:block; overflow:hidden;}
+        .container-fluid{
+            width: 80%;
+            height: 800px;
+            text-align: center;
+        }
+        #yonghu{
+            float: left;
+        }
+        #btn1{
+           float: left;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+<div ng-controller="myCtrl" id="div1" ng-cloak>
+    <header>
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Zhengcheng Admin</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>用户管理</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-pencil"></span>内容管理</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-tag"></span>标签管理</a></li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">个人资料</a></li>
+                                <li><a href="#">退出</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><span class="glyphicon glyphicon-off"></span>退出</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </nav>
+
+    </header>
+    <span class="blank" style="height:80px;"></span>
+    <div class="container-fluid">
+        <h3 id="yonghu">用户管理</h3>
+        <h1 class="page-header"></h1>
+        <div class="form-group-lg">
+            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+            <div class="input-group ">
+                <div class="input-group-addon btn btn-primary" ng-click="search()"><span class="glyphicon glyphicon-search"></span></div>
+                <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入关键字进行搜索" ng-focus="concentrate()">
+            </div>
+        </div>
+        <h1 class="page-header"></h1>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thread>
+                    <tr>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>邮箱</th>
+                        <th>操作</th>
+                    </tr>
+                </thread>
+                <tbody>
+                <tr ng-repeat="arr1 in arr1">
+                    <td>{{$index+1}}</td>
+                    <td>{{arr1.name}}</td>
+                    <td>{{arr1.email}}</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                操作
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a ng-click="updata($index)" href="javascript:void(0)">&nbsp;修改</a></li>
+                                <li> <a ng-click="delete($index)" href="javascript:void(0)">删除</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="modal" id="modal-data1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title">用户详细信息</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3><b>用户名：</b></h3>
+                                        <input type="text" class="form-control input-lg" ng-model="prod.name" value="{{prod.name}}">
+                                        <h3><strong>用户邮箱：</strong></h3>
+                                        <input type="text" class="form-control input-lg" ng-model="prod.email" value="{{prod.email}}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>&nbsp;关闭</button>
+                                        <button type="button" class="btn btn-success" ng-click="save()"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <button  id="btn1" class="btn btn-sm btn-success"data-toggle="modal" data-target="#modal-data2"><span class="glyphicon glyphicon-plus"></span>&nbsp;添加</button>
+            <div class="modal" id="modal-data2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel2" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">添加用户详细信息</h4>
+                        </div>
+                        <div class="modal-body" name="reg">
+                            <h3><b>用户姓名：</b></h3>
+                            <input type="text" class="form-control input-lg" ng-model="newName" placeholder="请添加用户名" name="username" required >
+                            <p ng-show="reg.username.$invalid && reg.username.$dirty" class="error-hint" style="color: red">必须填写</p>
+                            <h3><strong>用户邮箱：</strong></h3>
+                            <input type="text" class="form-control input-lg" ng-model="newPrice" placeholder="请添加用户邮箱" name="email" required>
+                            <p ng-show="reg.email.$invalid && reg.email.$dirty" class="error-hint" style="color: red">必须填写</p>
+                        </div>
+                        <div class="modal-footer" >
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>&nbsp;关闭</button>
+                            <button type="submit" class="btn btn-success" ng-click="add()" ng-disabled="$invalid"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;保存</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+    </div>
+
+</div>
+    <script src="../JS1/js2.js"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

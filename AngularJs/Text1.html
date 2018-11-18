@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <p>10秒后将变化:</p>
+    <h1>{{myHeader}}</h1>
+    <p>时钟:</p>
+    <h2>{{theTime}}</h2>
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $timeout,$interval) {
+        $scope.myHeader = "巴西世界杯!";
+        $timeout(function () {
+            $scope.myHeader = "里约奥运会！";
+        }, 1000);
+        $scope.theTime = new Date().toLocaleTimeString();
+        $interval(function () {
+            $scope.theTime = new Date().toLocaleTimeString();
+        }, 1000);
+    });
+</script>
+</body>
+</html>
+

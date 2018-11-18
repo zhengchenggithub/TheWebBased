@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>基础布局组件</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <!--导入一个可以鼠标悬浮显示下拉菜单的css-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/extend.css" />
+</head>
+<body>
+<nav class="nav navbar-inverse navbar-fixed-top" role="navigation"><!--导航栏，设置属性为无论怎么滚动页面，导航栏都在顶部，当然也可以设置为bottom-->
+    <!--导航栏采取流布局方式-->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!--浏览器界面小于一定阀值的时候，将会出现一个有三条横线的按钮，点击可以展开隐藏内容-->
+            <!--<a href="#" class="navbar-brand">
+               <img src ="img/icon0.png" style="height: 50px;margin-top:-15px;"/>
+            </a>-->
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <!--当浏览器缩小的时候，下面这些元素会消失，变成一个可弹出子菜单的小按钮-->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <!--默认这个选项是选中的（灰色图标）-->
+                <li class="active"><a href="#">首页</a></li>
+                <li><a href="#">主题</a></li>
+                <!--下拉菜单-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人信息<span class="caret"></span></a>
+                    <ul class="bs-menu dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a href="#">联系方式</a>
+                            <ul class="bs-submenu dropdown-menu">
+                                <li><a href="#">昵称</a></li>
+                                <li><a href="#">手机号码</a></li>
+                                <li><a href="#">邮件</a></li>
+                            </ul>
+                        </li>
+                        <!--下拉菜单之间划一道横线作为分割
+                        -->
+                        <li class="divider"></li>
+                        <li><a href="#">更改联系方式</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="navbar-form  navbar-right">
+                <a href="#" class="navber-link">上传资料</a>
+                <input type="text" class="form-control" placeholder="请输入关键字"  />
+                <button class="btn btn-primary"> <span class="glyphicon glyphicon-search"></span> </button>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--防止导航栏盖住内容,本质上是使用空白来占位-->
+<div style="height: 60px;"></div>
+<!--网格界面-->
+<div class="container">
+    <div class="row">
+        <!--面包屑导航栏，作用是告诉访问者他们目前在网站中的位置以及如何返回-->
+        <div class="col-md-12">
+            <ul class="breadcrumb">
+                <li><a href="#">公司简章</a></li>
+                <!--自己目前所处的页面标灰-->
+                <li><a href="#" class="text-muted">部门介绍</a></li>
+            </ul>
+        </div>
+        <!--一行默认有12列，这里定义该缩略图占其中四列，一排可以放三个-->
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="../img/thumb.png" />
+                <div class="caption">
+                    <!--该缩略图表加入链接-->
+                    <h3><a>研发部门</a></h3>
+                    <!--该缩略图标加入备注（纯文字，无连接-->
+                    <p>1楼</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="../img/thumb.png" />
+                <div class="caption">
+                    <h3><a>管理部门</a></h3>
+                    <p>2楼</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <ul id="mytab" class="nav nav-tabs">
+                <li class="active">
+                    <a href='#xw1' data-toggle='tab'>部门热点</a>
+                </li>
+                <li>
+                    <a href='#xw2' data-toggle='tab'>城市天气</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <!--fade有渐变效果-->
+                <div class="tab-pane fade in active" id="xw1">
+                    <p><a href="#">孙杨200米夺金，打肿霍顿的脸</a><span class="pull-right">2016-8-10</span></p>
+                    <p><a href="#">孙杨200米夺金，打肿霍顿的脸</a><span class="pull-right">2016-8-11</span></p>
+                    <p><a href="#">孙杨200米夺金，打肿霍顿的脸</a><span class="pull-right">2016-8-12</span></p>
+                    <p><a href="#">孙杨200米夺金，打肿霍顿的脸</a><span class="pull-right">2016-8-13</span></p>
+                </div>
+                <div class="tab-pane fade" id="xw2">
+                    <p><a href="#">降雨</a><span class="pull-right">2016-8-10</span></p>
+                    <p><a href="#">晴天</a><span class="pull-right">2016-8-11</span></p>
+                    <p><a href="#">降雪</a><span class="pull-right">2016-8-12</span></p>
+                    <p><a href="#">阴天</a><span class="pull-right">2016-8-13</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--列表组-->
+<div class="container">
+    <div class="row">
+        <div class="list-group col-md-6">
+            <a href="##" class="list-group-item active"><span class="badge">5902</span>图解CSS3</a>
+            <a href="##" class="list-group-item disabled"><span class="badge">22</span>W3C</a>
+            <a href="##" class="list-group-item list-group-item-success"><span class="badge">15902</span>W3cplus</a>
+            <a href="##" class="list-group-item list-group-item-info"><span class="badge">59020</span>慕课网</a>
+            <a href="##" class="list-group-item list-group-item-warning"><span class="badge">0</span>Sass中国</a>
+            <a href="##" class="list-group-item list-group-item-danger"><span class="badge">10</span>Mobile教程</a>
+        </div>
+
+        <div class="col-md-6">
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                成功！很好地完成了提交。
+            </div>
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                信息！请注意这个信息。
+            </div>
+            <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                警告！请不要提交。
+            </div>
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                错误！请进行一些更改。
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
+</body>
+</html>

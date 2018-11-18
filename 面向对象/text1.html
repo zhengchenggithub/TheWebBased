@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象之排序和表格的插入数据的添加</title>
+    <script>
+        window.onload = function () {
+             var oTab = document.getElementById('tab1');
+            var oBtn = document.getElementById('btn1'); //获取按钮的ID
+            var oName = document.getElementById('name'); //获取姓名的ID
+            var oAge = document.getElementById('age'); // 获取年龄的ID
+            var id =oTab.tBodies[0].rows.length+1; //定义一个id来表示tBodies中行数的每个id
+            oBtn.onclick = function () {      //为按钮添加一个点击事件
+              var oTr = document.createElement('tr');     定义oTr来获取tr
+                var oTd = document.createElement('td');      定义oTd来获取td
+                oTd.innerHTML =id++;                          //使oTd中内容id都加1
+                oTr.appendChild(oTd);                         //向oTr中插入一个oTd
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = oName.value;              //使输入的值赋值给oTd中
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = oAge.value;
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = '<a href="javascript:;">删除</a>';
+                oTr.appendChild(oTd);
+
+                oTd.getElementsByTagName('a')[0].onclick =function(){  //给删除按钮添加一个点击事件
+                    oTab.tBodies[0].removeChild(this.parentNode.parentNode);  //将oTab中的tBodies中的a节点的祖父节点删除
+                };
+                oTab.tBodies[0].appendChild(oTr);
+            };
+            //搜索事件
+            var Txt = document.getElementById('name');
+            var oBtn = document.getElementById('btn1');
+            oBtn.onclick = function () {
+                for (var i = 0;i < oTab.tBodies[0].rows.length;i++)
+                {
+                    var sTab = oTab.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+                    var sTxt = Txt.value.toLowerCase();
+                    var arr = sTxt.split(' ');
+                    oTab.tBodies[0].rows[i].style.display = 'none';
+                    for (var j = 0; j<arr.length;j++)
+                    {
+                        if(sTab.search(arr[j]) !== -1)
+                        {
+                            oTab.tBodies[0].rows[i].style.display = 'block';
+                        }
+
+                    }
+
+                }
+            };
+            var oBtn = document.getElementById('btn1');
+            oBtn.onclick = function () {
+                var arr = [];
+
+                for (var i =0; i < oTab.tBodies[0].rows.length;i++)
+                {
+                    arr[i] = oTab.tBodies[0].rows[i];
+                }
+                arr.sort(function (tr1,tr2) {
+                    var n1 = parseInt(tr1.cells[0].innerHTML);
+                    var n2 = parseInt(tr2.cells[0].innerHTML);
+                    return n1-n2;
+
+                });
+              
+                for (var i = 0; i < arr.length; i++)
+                {
+                    oTab.tBodies[0].appendChild(arr[i]);
+                }
+            };
+        };
+
+    </script>
+</head>
+<body>
+<!--姓名:<input id="name" type="text" />-->
+<!--年龄:<input id="age" type="text" />-->
+<input id="btn1" type="button" value="排序">
+<table id="tab1" border="1" width="500">
+    <thead>
+        <td>ID</td>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>操作</td>
+    </thead>
+    <tbody>
+        <tr>
+            <td>4</td>
+            <td>张三</td>
+            <td>20</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>李四</td>
+            <td>23</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>css</td>
+            <td>28  </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>王五</td>
+            <td>25</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>javascript</td>
+            <td>23</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Jquery</td>
+            <td>26</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>郑诚</td>
+            <td>21</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

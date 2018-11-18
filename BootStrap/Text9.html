@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style>
+        .error-hint {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+<div ng-controller="myCtrl">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form novalidate name="reg" role="form" action="test.php" method="post">
+                <h2>用户注册<small>注册成为本站用户，即可享受贴心服务</small></h2>
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <input type="text" name="username" ng-model="username" required
+                                   class="form-control input-lg" placeholder="用户名" tabindex="1">
+                            <p ng-show="reg.username.$invalid && reg.username.$dirty" class="error-hint">*真实姓名要求必填.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="password" name="password" ng-model="password" required minlength="3"
+                                   class="form-control input-lg" placeholder="密码" tabindex="5">
+                            <p ng-show="reg.password.$error.minlength && reg.password.$dirty" class="error-hint">*密码最短长度为3.</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <input type="password" name="repassword" ng-model="repassword" class="form-control input-lg" placeholder="确认密码" tabindex="6">
+                            <span ng-show="repassword!=password" class="error-hint">*两次密码输入不一致</span>
+                            <span class="error-hint" ng-show="reg.password.$valid">
+                                <span ng-show="repassword!=password">*两次密码输入不一致</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" ng-model="email" class="form-control input-lg" placeholder="邮箱" tabindex="4">
+                    <p ng-show="reg.email.$invalid && reg.email.$dirty" class="error-hint">*输入正确的邮箱.</p>
+                </div>
+                <div class="form-group">
+                    <select class="form-control input-lg" name="area"
+                            ng-init="area=areas[0]" ng-model="area" ng-options="x.name for x in areas"></select>
+                </div>
+
+                <hr class="colorgraph">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6"><a href="#" class="btn btn-success btn-block btn-lg">直接登录</a></div>
+                    <div class="col-xs-6 col-md-6"><input ng-disabled="reg.$invalid" class="btn btn-primary btn-block btn-lg" type="submit" value="注册"  tabindex="7"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <ul style="display: none">
+        <li>表单命名，使用ng-form或者添加novalidate属性</li>
+        <li>表单控件添加ng-model，提示内容使用ng-show，配合AngularJS表单属性</li>
+    </ul>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope) {
+        $scope.areas = [
+            {id:1, name:"中国"},
+            {id:2, name:"俄罗斯"},
+            {id:3, name:"美国"},
+            {id:4, name:"法国"},
+            {id:5, name:"英国"}
+        ];
+    })
+</script>
+</body>
+</html>
